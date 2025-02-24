@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .chat-container { width: 400px; margin: auto; border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+        .chat-box { height: 300px; overflow-y: auto; border-bottom: 1px solid #ccc; padding: 10px; }
+        .input-box { width: 100%; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Chat with AI</h2>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" id="userInput" class="input-box" placeholder="Type a message..." onkeypress="sendMessage(event)">
+    </div>
+
+    <script>
+        async function sendMessage(event) {
+            if (event.key === 'Enter') {
+                let inputField = document.getElementById('userInput');
+                let userMessage = inputField.value.trim();
+                if (!userMessage) return;
+                
+                displayMessage('You: ' + userMessage);
+                inputField.value = '';
+
+                let response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': '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'
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4',
+                        messages: [{ role: 'user', content: userMessage }]
+                    })
+                });
+                
+                let data = await response.json();
+                let aiMessage = data.choices[0].message.content;
+                displayMessage('AI: ' + aiMessage);
+            }
+        }
+
+        function displayMessage(message) {
+            let chatBox = document.getElementById('chatBox');
+            let msgDiv = document.createElement('div');
+            msgDiv.textContent = message;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
