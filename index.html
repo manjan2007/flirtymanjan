@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flirty Manjan AI - Unstoppable Charm 😘</title>
+    <title>Manjan OFC - Flirt Master 😏🔥</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #121212;
             color: white;
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,17 +17,17 @@
             margin: 0;
         }
         .container {
-            width: 90%;
-            max-width: 400px;
             background: #1e1e1e;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0px 0px 15px rgba(255, 0, 100, 0.5);
         }
         input, button {
             width: 100%;
             padding: 10px;
-            margin: 5px 0;
+            margin: 10px 0;
             border: none;
             border-radius: 5px;
         }
@@ -35,90 +36,72 @@
             color: white;
         }
         button {
-            background: hotpink;
+            background: #ff0066;
             color: white;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            transition: 0.3s;
         }
         button:hover {
-            background: deeppink;
+            background: #cc0052;
+        }
+        #flirtText {
+            font-size: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Let Manjan Flirt with You... 😘</h2>
+        <h2>Welcome to Manjan OFC - Flirt Master 😏🔥</h2>
         <input type="text" id="name" placeholder="Your Name">
-        <input type="text" id="job" placeholder="Your Job">
-        <input type="text" id="celeb" placeholder="Your Celebrity Crush">
-        <input type="text" id="relationship" placeholder="Relationship Status">
-        <input type="text" id="talent" placeholder="Your Special Talent">
-        <input type="text" id="hobby" placeholder="Your Favorite Hobby">
-        <button onclick="generateFlirt()">Make Me Blush 😉</button>
+        <input type="text" id="mood" placeholder="Your Mood (Happy, Shy, Bold)">
+        <button onclick="generateFlirt()">Flirt With Me 😘</button>
         <h3 id="flirtText"></h3>
     </div>
 
     <script>
-        const flirtTemplates = [
-            "Damn {name}, are you a magician? Because whenever I look at you, everyone else disappears. ✨",
-            "If being hot was a crime, {name}, you'd be serving a life sentence. 🔥",
-            "Are you a WiFi signal, {name}? Because I feel such a strong connection with you. 😉",
-            "Your job is {job}? I bet you're the most attractive thing in the office. 😘",
-            "{name}, you must be a time traveler, because you just took my heart into the future. 💖",
-            "They say nothing lasts forever, but can we prove them wrong? 😏",
-            "Is your name {celeb}? Because you just became my biggest obsession. 😍",
-            "Your talent is {talent}? Impressive… but can you also handle being the reason I can’t focus? 😉",
-            "Relationship status: {relationship}? Damn, so you're telling me there's still a chance? 🥰",
-            "If beauty were time, {name}, you’d be an eternity. ⏳💘",
-            "I must be lost, {name}, because heaven is a long way from here and you look like an angel. 😇",
-            "{name}, is your heart Google? Because I’ve been searching for someone like you. 😍",
-            "Your hobby is {hobby}? Cute… but can I be your next favorite activity? 😏",
-            "{name}, I don’t need a GPS to know that my heart belongs to you. 💕",
-            "{name}, your eyes must be made of stardust because every time I look into them, I get lost in space. ✨🌌",
-            "If kisses were snowflakes, I'd send you a blizzard. 😘",
-            "I was going to flirt with you but honestly… you’re so gorgeous I forgot all my pickup lines. 😍",
-            "{name}, do you like surprises? Because I'm about to steal your heart. 🎁💘",
-            "Your job is {job}? Then let me apply for the position of ‘love of your life’. 😉",
-            "{name}, your name must be Oxygen because I can’t live without you. 😘",
-            "If beauty were an Olympic sport, you’d be winning gold every time, {name}. 🏆",
-            "Damn {name}, is your dad a boxer? Because you’re a total knockout. 🥊😍",
-            "{name}, you’re like a fine wine… I just keep wanting more. 🍷😉",
-            "{name}, you light up my world brighter than a supernova. 🌟💖",
-            "You have a talent for {talent}? That’s cute… but can you handle the talent of making me fall for you? 😏",
-            "{name}, you should be a playlist because every time I see you, my heart skips a beat. 🎶💓",
-            "{name}, I think my pillow is jealous because it doesn’t get to see you every night. 😏",
-            "Do you believe in love at first sight, {name}, or should I walk by again? 😘",
-            "I don’t know your favorite number, {name}, but mine is yours. 🔥",
-            "{name}, your eyes are like coffee… because they keep me awake and addicted. ☕😏",
-            "Can we make a deal, {name}? I won’t stop flirting with you if you don’t stop being this attractive. 😉",
-            "{name}, I don’t need a camera to capture this moment… because I’ll never forget looking at you. 😍",
-            "Are you a candle, {name}? Because you just lit up my life. 🕯️💘",
-            "{name}, are you made of copper and tellurium? Because you’re Cu-Te. 😏",
-            "Your voice is my favorite sound, {name}, but I wouldn’t mind hearing it whisper my name. 😘",
-            "{name}, are you my phone charger? Because you give me all the energy I need. 🔥",
-            "The stars must be jealous, {name}, because you shine brighter than all of them. ✨",
-            "{name}, I need to report a crime… because you just stole my heart. 💖",
-            "Are you French, {name}? Because Eiffel for you. 😘",
-            "{name}, do you believe in fate? Because I think the universe just shipped us together. 🌌💞",
-            "You make my world spin faster than a rollercoaster, {name}. 🎢💘",
-            "{name}, I don’t believe in love at first sight… but I might make an exception for you. 😉",
-            "You and me, {name}… I think the chemistry is undeniable. 🔥💓",
-            "Are you a bank loan, {name}? Because you have my interest. 💰😍"
+        const flirtLines = [
+            "{name}, are you a magician? Because whenever I look at you, everyone else disappears. ✨",
+            "Damn {name}, you must be a campfire, because you’re making my heart melt. 🔥",
+            "Hey {name}, is your name Google? Because you have everything I’ve been searching for. 😘",
+            "{name}, you’re like a fine wine – you just get better with every moment I spend with you. 🍷😍",
+            "Are you a dream, {name}? Because every time I see you, reality feels unreal. 💭💖",
+            "{name}, do you believe in love at first sight, or should I walk by again? 😉",
+            "I was trying to flirt, {name}, but honestly, you’ve already stolen all my words… and my heart. 💘",
+            "{name}, if kisses were snowflakes, I’d send you a blizzard. ☃️😘",
+            "They say nothing lasts forever, {name}, so will you be my nothing? 😏💕",
+            "{name}, if beauty was a crime, you’d be serving a life sentence. 🔥❤️",
+            "{name}, you must be WiFi, because I feel so connected to you. 📶💘",
+            "{name}, do you have a map? Because I keep getting lost in your eyes. 🗺️😍",
+            "I must be a snowflake, {name}, because I've fallen for you. ❄️❤️",
+            "{name}, if being cute was a crime, you'd be doing life without parole. 🚔😍",
+            "{name}, your lips look lonely… would they like to meet mine? 😉😘",
+            "{name}, are you a time traveler? Because every moment with you feels timeless. ⏳💕",
+            "If love was a currency, {name}, you'd be the richest person alive. 💰❤️",
+            "{name}, my heart beats faster every time you enter the room. Are you a cardiac arrest? 😏🔥",
+            "{name}, are you a shooting star? Because I wished for someone like you. 🌠❤️",
+            "{name}, I’d say God bless you, but it looks like He already did. 😉✨",
+            "{name}, you must be made of copper and tellurium, because you’re Cu-Te. 🧪😘",
+            "{name}, if my love for you was a song, it would be stuck on repeat forever. 🎶💖",
+            "{name}, you light up my world like nobody else. 🔥✨",
+            "{name}, your name must be Oxygen because I can’t live without you. 🫁💕",
+            "{name}, are you a diamond? Because you shine brighter than anyone else. 💎😍",
+            "{name}, you must be tired, because you've been running through my mind all day. 🏃‍♀️💘",
+            "{name}, your beauty is out of this world. Are you an alien? 👽❤️",
+            "{name}, are you a spell? Because I'm enchanted by you. 🪄😍"
         ];
 
         function generateFlirt() {
-            let userData = {
-                name: document.getElementById('name').value || "Gorgeous",
-                job: document.getElementById('job').value || "heartbreaker",
-                celeb: document.getElementById('celeb').value || "someone irresistible",
-                relationship: document.getElementById('relationship').value || "single and ready to mingle",
-                talent: document.getElementById('talent').value || "melting hearts",
-                hobby: document.getElementById('hobby').value || "making people fall for you",
-            };
-
-            let template = flirtTemplates[Math.floor(Math.random() * flirtTemplates.length)];
-            let flirtLine = template.replace(/{(\w+)}/g, (_, key) => userData[key]);
-            document.getElementById('flirtText').innerText = flirtLine;
+            let userName = document.getElementById('name').value || "Gorgeous";
+            let randomFlirt = flirtLines[Math.floor(Math.random() * flirtLines.length)];
+            document.getElementById('flirtText').innerText = randomFlirt.replace("{name}", userName);
         }
     </script>
 </body>
